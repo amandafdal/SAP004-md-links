@@ -20,7 +20,11 @@
     "url": "https://github.com/amandafdal/SAP004-md-links/issues"
   },
   "homepage": "https://github.com/amandafdal/SAP004-md-links#readme",
+  "bin": {
+    "md-links": "cli.js"
+  },
   "dependencies": {
+    "commander": "^5.1.0",
     "eslint": "^7.4.0",
     "jest": "^26.1.0"
   }
