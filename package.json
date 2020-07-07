@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --coverage --watch",
+    "test": "jest --watchAll --coverage ",
     "eslint": "eslint --ext .js"
   },
   "repository": {
