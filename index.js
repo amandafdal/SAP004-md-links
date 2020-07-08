@@ -4,7 +4,7 @@ const mdLinks = (path) => {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
-        return reject(err)
+        return reject('Unable to find path. Insert full path. E.g.: ./some/example.md')
       } else{
         const regex = /\[.[^[\](\)]*\]\(http[^#][^[\](\)]*\)/gm;
         const dataMatch = data.match(regex);

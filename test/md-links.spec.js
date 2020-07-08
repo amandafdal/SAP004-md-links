@@ -5,7 +5,7 @@ describe('mdLinks', () => {
     expect(typeof mdLinks).toBe('function');
   });
   it('should return an error when file or directory is not found', () => {
-    return expect(mdLinks('./test/no-file')).rejects.toEqual('err')
+    return expect(mdLinks('./test/')).rejects.toEqual('Unable to find path. Insert full path. E.g.: ./some/example.md')
   });
   it('should return an empty string when there are no links on the specified .md file', () => {
     return expect(mdLinks('./test/nolinks.md')).resolves.toEqual('')
@@ -45,11 +45,3 @@ describe('mdLinks', () => {
     ])
   });
 });
-/*
-[Error: ENOENT: no such file or directory, open 'D:\coding\SAP004-md-links\README.nd'] {
-  errno: -4058,
-  code: 'ENOENT',
-  syscall: 'open',
-  path: 'D:\\coding\\SAP004-md-links\\README.nd'
-} 
-*/
