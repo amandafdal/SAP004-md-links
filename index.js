@@ -1,30 +1,29 @@
 const fs = require('fs');
+const path = require('path');
+const readFiles = require('./readFiles.js')
 
-const mdLinks = (path) => {
+const mdLinks = (cliPath) => {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (err, data) => {
-      if (err) {
-        return reject('Unable to find path. Insert full path. E.g.: ./some/example.md')
-      } else{
-        const regex = /\[.[^[\](\)]*\]\(http[^#][^[\](\)]*\)/gm;
-        const dataMatch = data.match(regex);
-        if (!dataMatch) {
-          return resolve('');
-        } else {
-          let arr = [];
-          dataMatch.map(ref => {
-            const refSplit = ref.split('](')
-            const obj = {
-              file: path,
-              text: refSplit[0].replace('[', ''),
-              href: refSplit[1].replace(')', ''),
-            };
-            arr.push(obj);
-          })
-          return resolve(arr)
-        }
+  fs.stat(cliPath, (err, stats) =>{
+    if (err){
+      console.log(err)
+    }else if (stats.isDirectory()) {
+        fs.readdir(cliPath, (err, files) => {
+          if (err) {
+            return reject('Unable to find path.')
+          }else{
+            files.forEach(file => {
+              if (path.extname(file) === '.md'){
+                const fullpath = path.join(cliPath,file)
+                resolve(readFiles(fullpath))
+              }
+            })
+          }
+        });
+      } else {
+        return readFiles(cliPath)
       }
-    });
+    })
   })
 };
 
