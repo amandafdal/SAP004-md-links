@@ -1,11 +1,16 @@
 {
   "name": "md-links",
   "version": "0.1.0",
-  "description": "## Índice",
+  "description": "Lib for reading links in .md files",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
+  "keywords": [
+    "markdown",
+    "links",
+    "library"
+  ],
   "scripts": {
     "test": "jest --watchAll --coverage ",
     "eslint": "eslint --ext .js"
@@ -23,7 +28,7 @@
   "bin": {
     "md-links": "cli.js"
   },
-  "dependencies": {
+  "devdependencies": {
     "eslint": "^7.4.0",
     "jest": "^26.1.0"
   }
